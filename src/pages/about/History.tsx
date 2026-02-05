@@ -5,15 +5,15 @@ import Navbar from '@/sections/Navbar';
 import Footer from '@/sections/Footer';
 
 const milestones = [
-  { year: '2016', title: '公司成立', desc: '安徽点薪网络科技有限公司正式成立，专注灵活用工领域', icon: Rocket },
-  { year: '2017', title: '产品上线', desc: '灵工结算系统1.0版本正式上线，服务首批客户', icon: TrendingUp },
-  { year: '2018', title: '业务拓展', desc: '服务客户突破100家，覆盖10个城市', icon: Users },
-  { year: '2019', title: '技术升级', desc: '推出智能风控系统，AI算法全面应用', icon: Award },
-  { year: '2020', title: '规模增长', desc: '服务客户突破500家，年发薪额突破5亿', icon: TrendingUp },
-  { year: '2021', title: '生态完善', desc: '推出日结保险、用工招聘等全链条服务', icon: Globe },
-  { year: '2022', title: '行业领先', desc: '服务客户突破1000家，成为行业头部企业', icon: Award },
-  { year: '2023', title: '持续创新', desc: '区块链存证技术上线，合规能力再升级', icon: Rocket },
-  { year: '2024', title: '未来可期', desc: '持续深耕灵活用工，服务更多企业和人才', icon: TrendingUp },
+  { year: '2023年01月', title: '公司成立', desc: '安徽点薪网络科技有限公司正式成立，总部位于安徽省合肥市蜀山区，专注灵活用工领域服务', icon: Rocket },
+  { year: '2023年03月', title: '产品完善', desc: '灵工结算系统完整版本上线，推出日结保险等配套服务产品', icon: TrendingUp },
+  { year: '2023年06月', title: '业务拓展', desc: '与首批龙头企业达成合作，覆盖外卖、网约车等领域', icon: Users },
+  { year: '2023年09月', title: '技术升级', desc: '推出智能风控系统和合规审核体系，通过多项资质认证', icon: Award },
+  { year: '2023年12月', title: '规模增长', desc: '服务企业突破100家，注册人才突破50万，月发薪额突破千万级', icon: TrendingUp },
+  { year: '2024年03月', title: '生态完善', desc: '推出用工招聘、数字身份认证等全链条增值服务', icon: Globe },
+  { year: '2024年06月', title: '创新发展', desc: '启动区块链存证技术研发，建立合规能力认证体系', icon: Award },
+  { year: '2024年09月', title: '行业领先', desc: '获得灵活用工服务领先企业认证，成为业内标杆', icon: Rocket },
+  { year: '2025年及以后', title: '未来展望', desc: '继续深耕灵活用工产业，服务更多企业和人才，打造行业生态', icon: TrendingUp },
 ];
 
 export default function History() {
@@ -28,7 +28,7 @@ export default function History() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">发展历程</h1>
             <p className="text-blue-100 text-lg leading-relaxed">
-              从2016年创立至今，点薪云始终专注于灵活用工领域，不断创新发展
+              自2023年成立以来，点薪云快速发展，不断创新和优化灵活用工解决方案
             </p>
           </motion.div>
         </div>

@@ -26,7 +26,7 @@ const navItems = [
   },
   { 
     label: '关于我们', 
-    href: '/about',
+    href: '/about/company',
     children: [
       { label: '公司介绍', href: '/about/company' },
       { label: '发展历程', href: '/about/history' },
@@ -123,12 +123,16 @@ export default function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" className="text-gray-700 hover:text-blue-600">
-              登录
-            </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6">
-              联系我们
-            </Button>
+            <a href="https://www.dianxingg.cn" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" className="text-gray-700 hover:text-blue-600">
+                登录结算系统
+              </Button>
+            </a>
+            <Link to="/about/contact">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6">
+                联系我们
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -178,12 +182,16 @@ export default function Navbar() {
                 </div>
               ))}
               <div className="pt-4 border-t border-gray-100 flex gap-3">
-                <Button variant="outline" className="flex-1 rounded-full">
-                  登录
-                </Button>
-                <Button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full">
-                  联系我们
-                </Button>
+                <a href="https://www.dianxingg.cn" target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <Button variant="outline" className="flex-1 rounded-full">
+                    登录结算系统
+                  </Button>
+                </a>
+                <Link to="/about/contact" className="flex-1">
+                  <Button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full">
+                    联系我们
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

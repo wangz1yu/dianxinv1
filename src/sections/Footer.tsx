@@ -37,9 +37,11 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">点</span>
-              </div>
+              <img 
+                src="/favicon.png" 
+                alt="点薪云" 
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-xl font-bold">点薪云</span>
             </Link>
             <p className="text-gray-400 text-sm mb-6 max-w-xs">
