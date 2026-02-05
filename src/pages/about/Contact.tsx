@@ -33,19 +33,9 @@ export default function Contact() {
   });
   
   const [submitted, setSubmitted] = useState(false);
-  const [savedRecords, setSavedRecords] = useState<ContactFormData[]>([]);
 
   useEffect(() => {
-   window.scrollTo(0, 0);
-    // Load saved records
-    const saved = localStorage.getItem('contactRecords');
-    if (saved) {
-      try {
-        setSavedRecords(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to load saved records', e);
-      }
-    }
+    window.scrollTo(0, 0);
     
     // Load last form data
     const lastFormData = localStorage.getItem('lastContactForm');
@@ -71,16 +61,17 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const updatedRecords = [
-      ...savedRecords,
-      {
-        ...formData,
-        timestamp: new Date().toISOString(),
-      },
-    ];
+    // Save to localStorage for internal use
+    const contactRecord = {
+      ...formData,
+      timestamp: new Date().toISOString(),
+    };
     
-    setSavedRecords(updatedRecords);
-    localStorage.setItem('contactRecords', JSON.stringify(updatedRecords));
+    // Get existing records
+    const existing = localStorage.getItem('contactRecords');
+    const records = existing ? JSON.parse(existing) : [];
+    records.push(contactRecord);
+    localStorage.setItem('contactRecords', JSON.stringify(records));
     
     setSubmitted(true);
     setTimeout(() => {
@@ -210,26 +201,7 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Saved Records */}
-              {savedRecords.length > 0 && (
-                <div className="bg-blue-50 rounded-2xl p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">联系记录 ({savedRecords.length})</h3>
-                  <div className="space-y-3 max-h-80 overflow-y-auto">
-                    {savedRecords.map((record, index) => (
-                      <div key={index} className="bg-white rounded-xl p-4 text-sm border border-blue-100">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="font-semibold text-gray-900">{record.name}</span>
-                          <span className="text-xs text-gray-500">
-                            {record.timestamp ? new Date(record.timestamp).toLocaleDateString() : ''}
-                          </span>
-                        </div>
-                        <p className="text-gray-600">{record.phone}</p>
-                        <p className="text-gray-600 text-xs">{record.company}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+
             </motion.div>
           </div>
         </div>
