@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '@/pages/Home';
+import Services from '@/pages/Services';
+import Solutions from '@/pages/Solutions';
 import Settlement from '@/pages/services/Settlement';
 import Insurance from '@/pages/services/Insurance';
 import Recruitment from '@/pages/services/Recruitment';
@@ -16,16 +18,18 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/services/settlement" element={<Settlement />} />
         <Route path="/services/insurance" element={<Insurance />} />
         <Route path="/services/recruitment" element={<Recruitment />} />
-        <Route path="/about/company" element={<Company />} />
-        <Route path="/about/history" element={<History />} />
-        <Route path="/about/contact" element={<Contact />} />
+        <Route path="/solutions" element={<Solutions />} />
         <Route path="/solutions/delivery" element={<Delivery />} />
         <Route path="/solutions/ride" element={<Ride />} />
         <Route path="/solutions/housekeeping" element={<Housekeeping />} />
         <Route path="/solutions/logistics" element={<Logistics />} />
+        <Route path="/about/company" element={<Company />} />
+        <Route path="/about/history" element={<History />} />
+        <Route path="/about/contact" element={<Contact />} />
       </Routes>
     </Router>
   );

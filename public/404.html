@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <script type="text/javascript">
       // Store the path before redirecting to index.html
-      const path = window.location.pathname.slice(0, -10); // Remove /404.html
-      if (path) {
+      const path = window.location.pathname.replace(/\/404\.html$/, '');
+      if (path && path !== '/') {
         sessionStorage.redirect = path + window.location.search + window.location.hash;
       }
       window.location.replace(window.location.origin + '/');
