@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Wallet, Clock, CheckCircle, Shield, TrendingUp, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/sections/Navbar';
@@ -30,10 +31,12 @@ export default function Settlement() {
             <p className="text-blue-100 text-lg mb-8 leading-relaxed">
               为企业提供合规、高效的灵活用工结算服务，支持多种支付方式，资金实时到账，降低用工成本30%以上。
             </p>
-            <Button className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
-              立即咨询
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            <Link to="/about/contact">
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
+                立即咨询
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
