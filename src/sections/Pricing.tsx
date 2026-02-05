@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Check, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const pricingPlans = [
   {
     name: '灵工结算',
-    price: '0.5%',
-    unit: '起',
+    price: '费用',
+    unit: '咨询',
     description: '按实际结算金额计费',
     features: [
       'T+0极速到账',
@@ -36,8 +37,8 @@ const pricingPlans = [
   },
   {
     name: '日结保险',
-    price: '2元',
-    unit: '/人/天',
+    price: '费用',
+    unit: '咨询',
     description: '按实际工作天数计费',
     features: [
       '次日自动生效',
@@ -69,9 +70,11 @@ export default function Pricing() {
           <p className="text-gray-600 max-w-2xl mx-auto">
             透明的定价体系，灵活的付费方式，让每一分钱都物有所值
           </p>
-          <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8">
-            立即咨询
-          </Button>
+          <Link to="/about/contact">
+            <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8">
+              立即咨询
+            </Button>
+          </Link>
         </motion.div>
 
         {/* Pricing Cards */}
@@ -152,17 +155,19 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              {/* CTA */}
-              <Button 
-                className={`w-full rounded-full group ${
-                  plan.highlighted 
-                    ? 'bg-white text-blue-600 hover:bg-gray-100' 
-                    : 'bg-gray-900 text-white hover:bg-gray-800'
-                }`}
-              >
-                {plan.cta}
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              {/* CTA Button */}
+              <Link to="/about/contact" className="block">
+                <Button 
+                  className={`w-full rounded-full group ${
+                    plan.highlighted 
+                      ? 'bg-white text-blue-600 hover:bg-gray-100' 
+                      : 'bg-gray-900 text-white hover:bg-gray-800'
+                  }`}
+                >
+                  {plan.cta}
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </motion.div>
           ))}
         </div>

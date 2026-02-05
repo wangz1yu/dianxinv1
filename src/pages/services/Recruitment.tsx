@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Users, Search, Clock, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/sections/Navbar';
@@ -30,10 +31,12 @@ export default function Recruitment() {
             <p className="text-indigo-100 text-lg mb-8 leading-relaxed">
               覆盖全国的灵活用工人才网络，智能匹配算法快速找到合适人才，从发布需求到人员到岗最快24小时。
             </p>
-            <Button className="bg-white text-indigo-600 hover:bg-gray-100 rounded-full px-8">
-              立即咨询
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            <Link to="/about/contact">
+              <Button className="bg-white text-indigo-600 hover:bg-gray-100 rounded-full px-8">
+                立即咨询
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

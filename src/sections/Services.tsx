@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wallet, Shield, Users, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,7 @@ const services = [
     icon: Wallet,
     title: '灵工结算',
     subtitle: 'T+0极速发薪',
+    href: '/services/settlement',
     description: '为企业提供合规、高效的灵活用工结算服务，支持多种支付方式，资金实时到账，降低用工成本30%以上。',
     features: ['T+0极速到账', '合规税务处理', '多支付方式支持', '智能风控系统'],
     color: 'from-blue-500 to-blue-600',
@@ -16,6 +18,7 @@ const services = [
   {
     id: 'insurance',
     icon: Shield,
+    href: '/services/insurance',
     title: '日结保险',
     subtitle: '按天计费，次日生效',
     description: '专为灵活用工场景设计的保险产品，按实际工作天数计费，次日自动生效，全面保障用工安全。',
@@ -26,6 +29,7 @@ const services = [
     id: 'recruitment',
     icon: Users,
     title: '用工招聘',
+    href: '/services/recruitment',
     subtitle: '500万+人才库',
     description: '覆盖全国的灵活用工人才网络，智能匹配算法快速找到合适人才，从发布需求到人员到岗最快24小时。',
     features: ['500万+人才库', '智能匹配算法', '24小时快速到岗', '全流程服务'],
@@ -123,10 +127,12 @@ export default function Services() {
                         {services[activeService].title}
                       </h3>
                     </div>
-                    <Button variant="outline" className="rounded-full group">
-                      查看更多
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                    <Link to={services[activeService].href}>
+                      <Button variant="outline" className="rounded-full group">
+                        查看更多
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
 
                   {/* Service Image */}

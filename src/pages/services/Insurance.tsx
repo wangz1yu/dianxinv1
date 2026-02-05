@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Shield, Clock, CheckCircle, Heart, TrendingUp, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/sections/Navbar';
@@ -30,10 +31,12 @@ export default function Insurance() {
             <p className="text-cyan-100 text-lg mb-8 leading-relaxed">
               专为灵活用工场景设计的保险产品，按实际工作天数计费，次日自动生效，全面保障用工安全。
             </p>
-            <Button className="bg-white text-cyan-600 hover:bg-gray-100 rounded-full px-8">
-              立即咨询
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            <Link to="/about/contact">
+              <Button className="bg-white text-cyan-600 hover:bg-gray-100 rounded-full px-8">
+                立即咨询
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

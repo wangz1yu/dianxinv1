@@ -4,8 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>点薪云</title>
-    <script type="module" crossorigin src="./assets/index-DqDiRN7G.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-daMF-LcR.css">
+    <script type="text/javascript">
+      // Handle GitHub Pages SPA routing
+      (function() {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-Db_6EQUE.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DsNhNdx9.css">
   </head>
   <body>
     <div id="root"></div>
