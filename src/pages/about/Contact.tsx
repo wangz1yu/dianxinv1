@@ -8,9 +8,9 @@ import Navbar from '@/sections/Navbar';
 import Footer from '@/sections/Footer';
 
 const contactInfo = [
-  { icon: Phone, title: '联系电话', content: '400-888-8888' },
-  { icon: Mail, title: '电子邮箱', content: 'service@dianxin.cloud' },
-  { icon: MapPin, title: '公司地址', content: '安徽省合肥市高新区' },
+  { icon: Phone, title: '联系电话', content: '17340094007' },
+  { icon: Mail, title: '电子邮箱', content: 'wangziyu@dianxingg.com.cn' },
+  { icon: MapPin, title: '公司地址', content: '安徽省合肥市蜀山区南七街道望江西路华润五彩国际1303室' },
   { icon: Clock, title: '服务时间', content: '周一至周日 9:00-21:00' },
 ];
 

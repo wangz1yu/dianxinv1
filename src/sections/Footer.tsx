@@ -50,15 +50,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm text-gray-400">
                 <Phone className="w-4 h-4" />
-                <span>400-888-8888</span>
+                <span>17340094007</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-400">
                 <Mail className="w-4 h-4" />
-                <span>service@dianxin.cloud</span>
+                <span>wangziyu@dianxingg.com.cn</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-400">
                 <MapPin className="w-4 h-4" />
-                <span>安徽省合肥市高新区</span>
+                <span>安徽省合肥市蜀山区南七街道望江西路华润五彩国际1303室</span>
               </div>
             </div>
           </div>

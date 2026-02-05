@@ -31,7 +31,7 @@ export default function Company() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">关于点薪云</h1>
             <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-              安徽点薪网络科技有限公司成立于2016年，总部位于安徽省合肥市，是一家专注于灵活用工领域的科技型企业。
+              安徽点薪网络科技有限公司成立于2023年01月12日，总部位于安徽省合肥市蜀山区，是一家专注于灵活用工领域的科技型企业。
               我们致力于通过数字化工具，为企业提供智能化、自动化的一站式用工解决方案。
             </p>
             <Button className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
