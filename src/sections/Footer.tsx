@@ -91,7 +91,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6 text-sm text-gray-400">
-              <span>© 2024 点薪云</span>
+              <span>© 2025 点薪云®‌  皖ICP备2024034333号</span>
             </div>
             
             {/* Language Selector */}
