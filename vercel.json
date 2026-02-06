@@ -1,13 +1,16 @@
 {
   "version": 2,
   "functions": {
-    "api/contact.ts": {
+    "api/contact.js": {
+      "runtime": "nodejs18.x",
       "memory": 128,
       "maxDuration": 10
     }
   },
-  "env": {
-    "TELEGRAM_BOT_TOKEN": "@TELEGRAM_BOT_TOKEN",
-    "TELEGRAM_CHAT_ID": "@TELEGRAM_CHAT_ID"
-  }
+  "rewrites": [
+    {
+      "source": "/api/contact",
+      "destination": "/api/contact.js"
+    }
+  ]
 }
