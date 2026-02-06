@@ -42,8 +42,8 @@ export default function Ecosystem() {
             transition={{ duration: 0.8 }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
           >
-            <div className="w-50 h-50 md:w-40 md:h-40 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-2xl">
-              <img src="https://www.dianxin.love/favicon.png" alt="Logo" className="h-9 w-auto inline-block" />
+            <div className="w-50 h-50 md:w-40 md:h-40 flex items-center justify-center">
+            <img src="https://www.dianxin.love/favicon.png" alt="Logo" className="h-full w-auto" />
             </div>
           </motion.div>
 
