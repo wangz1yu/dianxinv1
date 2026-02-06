@@ -94,9 +94,9 @@ export default function CTA() {
               size="lg" 
               className="bg-white !text-blue-900 hover:bg-gray-100 rounded-full px-8 group"
             >
-            <a href="https://oss.dianxin.love/%E7%82%B9%E8%96%AA%E7%81%B5%E5%B7%A5%E4%B8%80%E7%AB%99%E5%BC%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.pdf" target="_blank" rel="noopener noreferrer"></a>  
-              获取解决方案
-            </a>  
+            <a href="https://oss.dianxin.love/%E7%82%B9%E8%96%AA%E7%81%B5%E5%B7%A5%E4%B8%80%E7%AB%99%E5%BC%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.pdf" target="_blank" rel="noopener noreferrer"> 
+              获取解决方案  
+              </a> 
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
