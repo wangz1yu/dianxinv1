@@ -92,8 +92,6 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6 text-sm text-gray-400">
               <span>© 2024 点薪云</span>
-              <Link to="/terms" className="hover:text-white transition-colors">使用条款</Link>
-              <Link to="/privacy" className="hover:text-white transition-colors">隐私政策</Link>
             </div>
             
             {/* Language Selector */}
