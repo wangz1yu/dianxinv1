@@ -82,6 +82,7 @@ export default function Hero() {
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 group"
               >
+                <a href="https://www.dianxin.love/about/contact" target="_blank" rel="noopener noreferrer"></a>
                 立即咨询
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -89,9 +90,9 @@ export default function Hero() {
                 asChild
                 size="lg" 
                 variant="outline" 
-                className="border-white/20 text-white hover:bg-white/10 rounded-full px-8"
+                className="bg-white border-transparent text-black hover:bg-white/90 rounded-full px-8"
                 >
-                <a href="https://oss.dianxin.love/" target="_blank" rel="noopener noreferrer">
+                <a href="https://oss.dianxin.love/video/cjrw.mp4" target="_blank" rel="noopener noreferrer">
                 <Play className="mr-2 w-4 h-4" />
                 观看演示
                 </a>
