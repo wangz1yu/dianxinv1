@@ -86,12 +86,15 @@ export default function Hero() {
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
+                asChild
                 size="lg" 
                 variant="outline" 
                 className="border-white/20 text-white hover:bg-white/10 rounded-full px-8"
-              >
+                >
+                <a href="https://oss.dianxin.love/" target="_blank" rel="noopener noreferrer">
                 <Play className="mr-2 w-4 h-4" />
                 观看演示
+                </a>
               </Button>
             </motion.div>
 
