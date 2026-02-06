@@ -97,13 +97,6 @@ export default function CTA() {
               立即咨询
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white/30 text-white hover:bg-white/10 rounded-full px-8"
-            >
-              了解更多
-            </Button>
           </motion.div>
         </motion.div>
       </div>
