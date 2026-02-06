@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "functions": {
+    "api/contact.ts": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@TELEGRAM_BOT_TOKEN",
+    "TELEGRAM_CHAT_ID": "@TELEGRAM_CHAT_ID"
+  }
+}
