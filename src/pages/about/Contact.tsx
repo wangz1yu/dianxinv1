@@ -71,11 +71,12 @@ export default function Contact() {
         timestamp: new Date().toISOString(),
       };
       
-      // Send to backend API
-      const response = await fetch('https://dianxinv1.vercel.app/api/contact', {
+      // Send to Formspree
+      const response = await fetch('https://formspree.io/f/mpqjabyr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(contactRecord),
       });
