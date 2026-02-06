@@ -103,9 +103,9 @@ export default function Hero() {
               className="flex gap-8 mt-12"
             >
               {[
-                { value: '1000+', label: '服务企业' },
-                { value: '500万+', label: '注册人才' },
-                { value: '10亿+', label: '年发薪额' },
+                { value: '3000+', label: '服务企业' },
+                { value: '20万+', label: '注册人才' },
+                { value: '20亿+', label: '年发薪额' },
               ].map((stat, index) => (
                 <div key={index}>
                   <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
