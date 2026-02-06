@@ -1,16 +1,9 @@
 {
   "version": 2,
-  "functions": {
-    "api/contact.js": {
-      "runtime": "nodejs18.x",
-      "memory": 128,
-      "maxDuration": 10
-    }
-  },
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/contact",
-      "destination": "/api/contact.js"
+      "src": "api/contact.js",
+      "use": "@vercel/node"
     }
   ]
 }
