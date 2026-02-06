@@ -1,4 +1,4 @@
-// Telegram Bot API endpoint for contact form
+// Telegram Bot API endpoint for contact form (with global error capture)
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -11,7 +11,7 @@ function escapeHtml(text) {
     '"': '&quot;',
     "'": '&#039;'
   };
-  return text.replace(/[&<>"']/g, (char) => map[char]);
+  return String(text || '').replace(/[&<>"']/g, (char) => map[char]);
 }
 
 async function sendTelegramMessage(data) {
@@ -22,16 +22,7 @@ async function sendTelegramMessage(data) {
     return false;
   }
 
-  const messageText = `📬 <b>新的联系表单提交</b>
-
-👤 <b>姓名：</b> ${escapeHtml(data.name)}
-📱 <b>电话：</b> ${escapeHtml(data.phone)}
-📧 <b>邮箱：</b> ${escapeHtml(data.email || '未填写')}
-🏢 <b>公司：</b> ${escapeHtml(data.company || '未填写')}
-📝 <b>咨询内容：</b>
-${escapeHtml(data.message)}
-
-⏰ <b>提交时间：</b> ${new Date(data.timestamp || Date.now()).toLocaleString('zh-CN')}`;
+  const messageText = `📬 <b>新的联系表单提交</b>\n\n👤 <b>姓名：</b> ${escapeHtml(data.name)}\n📱 <b>电话：</b> ${escapeHtml(data.phone)}\n📧 <b>邮箱：</b> ${escapeHtml(data.email || '未填写')}\n🏢 <b>公司：</b> ${escapeHtml(data.company || '未填写')}\n📝 <b>咨询内容：</b>\n${escapeHtml(data.message)}\n\n⏰ <b>提交时间：</b> ${new Date(data.timestamp || Date.now()).toLocaleString('zh-CN')}`;
 
   try {
     const response = await fetch(
@@ -50,8 +41,8 @@ ${escapeHtml(data.message)}
     );
 
     if (!response.ok) {
-      const error = await response.json();
-      console.error('Telegram API error:', error);
+      const err = await response.text();
+      console.error('Telegram API error:', err);
       return false;
     }
 
@@ -64,38 +55,39 @@ ${escapeHtml(data.message)}
 }
 
 module.exports = async (req, res) => {
-  // Set CORS headers
-  const origin = req.headers.origin || '';
-  const allowedOrigins = [
-    'https://www.dianxin.love',
-    'https://dianxin.love',
-    'http://localhost:5173',
-    'http://127.0.0.1:5173'
-  ];
-
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  } else {
-    res.setHeader('Access-Control-Allow-Origin', 'https://www.dianxin.love');
-  }
-
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Max-Age', '3600');
-  res.setHeader('Content-Type', 'application/json');
-
-  // Handle preflight OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed, use POST' });
-  }
-
   try {
-    const { name, phone, email, company, message, timestamp } = req.body;
+    // Set CORS headers
+    const origin = req.headers.origin || '';
+    const allowedOrigins = [
+      'https://www.dianxin.love',
+      'https://dianxin.love',
+      'http://localhost:5173',
+      'http://127.0.0.1:5173'
+    ];
+
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.dianxin.love');
+    }
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Max-Age', '3600');
+    res.setHeader('Content-Type', 'application/json');
+
+    // Handle preflight OPTIONS request
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed, use POST' });
+    }
+
+    // parse body
+    const { name, phone, email, company, message, timestamp } = req.body || {};
 
     // Validate required fields
     if (!name || !phone || !message) {
@@ -112,7 +104,7 @@ module.exports = async (req, res) => {
     }
 
     // Validate phone format
-    const cleanPhone = phone.replace(/\s|-|\+/g, '');
+    const cleanPhone = String(phone).replace(/\s|-|\+/g, '');
     if (!/^\d{10,20}$/.test(cleanPhone)) {
       return res.status(400).json({
         error: '电话号码格式不正确'
@@ -137,11 +129,9 @@ module.exports = async (req, res) => {
       telegramNotified: telegramSent
     });
   } catch (error) {
-    console.error('Error processing contact form:', error);
-    return res.status(500).json({
-      error: '服务器错误，请稍后重试',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
+    console.error('Unhandled error in function:', error && error.stack ? error.stack : error);
+    // For debugging, return error message in development only
+    const isDev = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview';
+    return res.status(500).json({ error: '服务器错误，请稍后重试', details: isDev ? String(error) : undefined });
   }
 };
-
