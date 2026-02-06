@@ -73,8 +73,22 @@ function escapeHtml(text: string): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Get origin from request
+  const origin = req.headers.origin || '';
+  
+  // Allow specific domains
+  const allowedOrigins = [
+    'https://www.dianxin.love',
+    'https://dianxin.love',
+    'http://localhost:5173', // For local development
+    'http://127.0.0.1:5173'   // For local development
+  ];
+  
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Max-Age', '86400');
