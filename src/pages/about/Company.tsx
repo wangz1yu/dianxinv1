@@ -7,13 +7,13 @@ import Footer from '@/sections/Footer';
 
 const stats = [
   { value: '8年', label: '行业经验' },
-  { value: '1000+', label: '服务企业' },
-  { value: '500万+', label: '注册人才' },
-  { value: '10亿+', label: '年发薪额' },
+  { value: '3000+', label: '服务企业' },
+  { value: '20万+', label: '注册人才' },
+  { value: '20亿+', label: '年发薪额' },
 ];
 
 const values = [
-  { icon: Award, title: '专业', desc: '8年专注灵活用工领域，深耕行业know-how' },
+  { icon: Award, title: '专业', desc: '4年专注灵活用工领域，深耕行业know-how' },
   { icon: Shield, title: '合规', desc: '严格遵守法律法规，确保每一笔结算合规安全' },
   { icon: TrendingUp, title: '创新', desc: '持续技术创新，引领行业发展方向' },
   { icon: Users, title: '共赢', desc: '与客户共同成长，实现多方共赢' },

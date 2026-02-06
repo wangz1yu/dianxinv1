@@ -82,8 +82,9 @@ export default function Hero() {
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 group"
               >
-                <a href="https://www.dianxin.love/about/contact" target="_blank" rel="noopener noreferrer"></a>
+                <a href="https://www.dianxin.love/about/contact" target="_blank" rel="noopener noreferrer">
                 立即咨询
+                </a>
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
