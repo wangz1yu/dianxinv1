@@ -128,9 +128,9 @@ export default function Navbar() {
                 登录结算系统
               </Button>
             </a>
-            <Link to="/about/contact">
+            <Link to="https://beta.dianxingg.cn/platform/v2/index.html">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6">
-                联系我们
+                获取API接口
               </Button>
             </Link>
           </div>
