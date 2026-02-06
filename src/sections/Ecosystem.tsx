@@ -43,7 +43,7 @@ export default function Ecosystem() {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
           >
             <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-2xl">
-              <span className="text-white text-4xl font-bold">点</span>
+              <img src="https://www.dianxin.love/favicon.png" alt="Logo" className="h-9 w-auto inline-block" />
             </div>
           </motion.div>
 

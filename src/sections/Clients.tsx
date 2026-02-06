@@ -38,7 +38,7 @@ export default function Clients() {
             我们的客户
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            自2016年以来，以智能用工赋能行业领先品牌增长
+            自2023年以来，以智能用工赋能行业领先品牌增长
           </p>
           <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8">
             立即咨询
