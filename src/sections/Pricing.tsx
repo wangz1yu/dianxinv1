@@ -156,7 +156,7 @@ export default function Pricing() {
               </ul>
 
               {/* CTA Button */}
-              <Link to="/about/contact" className="block">
+              <Link to="/services" className="block">
                 <Button 
                   className={`w-full rounded-full group ${
                     plan.highlighted 
