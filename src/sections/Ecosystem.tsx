@@ -45,12 +45,8 @@ export default function Ecosystem() {
             <div className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
              {/* 背景白色圆形：尺寸稍微比 Logo 大一点，带一点模糊效果更自然 */}
             <div className="absolute inset-0 bg-white rounded-full scale-75 shadow-lg shadow-white/20"></div>
-  <img 
-    src="https://www.dianxin.love/favicon.png" 
-    alt="Logo" 
-    className="relative z-10 h-10 w-auto" 
-  />
-</div>
+            <img src="https://www.dianxin.love/favicon.png" alt="Logo" className="relative z-10 h-10 w-auto" />
+          </div>
           </motion.div>
 
           {/* Orbital Rings */}
