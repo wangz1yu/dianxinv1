@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Drawer,
-  DrawerTrigger,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
@@ -134,36 +133,16 @@ export default function Qualifications() {
                           <div className="font-medium text-gray-900">{q.title}</div>
                           <div className="text-xs text-gray-500">{q.summary}</div>
                         </div>
-                        <Drawer open={openDrawer} onOpenChange={setOpenDrawer}>
-                          <DrawerTrigger asChild>
-                            <Button
-                              onClick={() => {
-                                setSelected(q);
-                                setOpenDrawer(true);
-                              }}
-                              variant="ghost"
-                              className="text-sm"
-                            >
-                              查看资质
-                            </Button>
-                          </DrawerTrigger>
-
-                          <DrawerContent>
-                            <DrawerHeader>
-                              <DrawerTitle>{q.title}</DrawerTitle>
-                              <DrawerDescription>{q.summary}</DrawerDescription>
-                            </DrawerHeader>
-                            <div className="p-4">
-                              <img src={q.image} alt={q.title} className="w-full h-auto rounded-md" />
-                              <p className="mt-4 text-sm text-gray-700">{q.detail}</p>
-                            </div>
-                            <DrawerFooter>
-                              <DrawerClose asChild>
-                                <Button className="rounded-full">关闭</Button>
-                              </DrawerClose>
-                            </DrawerFooter>
-                          </DrawerContent>
-                        </Drawer>
+                        <Button
+                          onClick={() => {
+                            setSelected(q);
+                            setOpenDrawer(true);
+                          }}
+                          variant="ghost"
+                          className="text-sm"
+                        >
+                          查看资质
+                        </Button>
                       </div>
                     </div>
                   </motion.div>
@@ -172,6 +151,25 @@ export default function Qualifications() {
             </div>
           </div>
         </div>
+
+        {/* Page-level Drawer: show selected qualification */}
+        <Drawer open={openDrawer} onOpenChange={setOpenDrawer}>
+          <DrawerContent className="data-[vaul-drawer-direction=right]:w-96">
+            <DrawerHeader>
+              <DrawerTitle>{selected.title}</DrawerTitle>
+              <DrawerDescription>{selected.summary}</DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4">
+              <img src={selected.image} alt={selected.title} className="w-full h-auto rounded-md" />
+              <p className="mt-4 text-sm text-gray-700">{selected.detail}</p>
+            </div>
+            <DrawerFooter>
+              <DrawerClose asChild>
+                <Button className="rounded-full">关闭</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </div>
     </section>
   );
