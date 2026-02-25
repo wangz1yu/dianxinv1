@@ -21,15 +21,15 @@ const qualifications = [
   },
   {
     id: 'info-service',
-    title: '信息服务业务（仅限互联网信息服务）',
+    title: '信息系统安全等级保护',
     image: '/images/qualifications/qualification-2.svg',
-    summary: '已备案并具备互联网信息服务资质',
+    summary: '已备案并具备信息安全等级保护',
     detail:
-      '本平台具备开展互联网信息服务的相关资质，依法合规运营，提供在线数据处理与交易处理服务。',
+      '本平台系统具备公安部二级安全等级保护备案。',
   },
   {
     id: 'online-data',
-    title: '在线数据处理与交易处理业务',
+    title: '在线数据处理与交易处理业务、信息服务业务、互联网信息服务资质',
     image: '/images/qualifications/qualification-3.svg',
     summary: '支持在线数据处理与交易处理的系统能力',
     detail:
@@ -52,7 +52,7 @@ export default function Qualifications() {
         >
           <h3 className="text-2xl font-semibold text-gray-900">企业平台资质展示</h3>
           <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-            平台拥有的软件著作权、互联网信息服务等资质。点击右侧列表选择资质，使用“放大预览”查看大图与说明。
+            平台拥有的软件著作权、公安安全等级保护、互联网信息服务等资质。
           </p>
         </motion.div>
 
