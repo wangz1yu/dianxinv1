@@ -1,15 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose,
-} from '@/components/ui/drawer';
-import {
   Dialog,
   DialogTrigger,
   DialogContent,
@@ -26,7 +17,7 @@ const qualifications = [
     image: '/images/qualifications/qualification-1.svg',
     summary: '公司拥有多项软件著作权，覆盖核心平台模块',
     detail:
-      '本公司已取得若干软件著作权，覆盖订单处理、结算报表、对接 API 等核心能力。证书号与详细信息可在抽屉中查看。',
+      '本公司已取得若干软件著作权，覆盖订单处理、结算报表、对接 API 等核心能力。证书号与详细信息可在此查看。',
   },
   {
     id: 'info-service',
@@ -48,7 +39,6 @@ const qualifications = [
 
 export default function Qualifications() {
   const [selected, setSelected] = useState(qualifications[0]);
-  const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <section className="py-12 bg-gray-50">
@@ -62,31 +52,25 @@ export default function Qualifications() {
         >
           <h3 className="text-2xl font-semibold text-gray-900">企业平台资质展示</h3>
           <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-            平台拥有的软件著作权、互联网信息服务等资质。下方有列表，点击“查看资质”以抽屉形式查看证书详情并放大预览。
+            平台拥有的软件著作权、互联网信息服务等资质。点击右侧列表选择资质，使用“放大预览”查看大图与说明。
           </p>
         </motion.div>
 
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <div className="flex flex-col md:flex-row items-start gap-6">
-            {/* Left: preview */}
+            {/* Left: preview and enlarge button */}
             <div className="flex-1">
               <div className="rounded-xl overflow-hidden border border-gray-100 bg-gray-50">
                 <img
                   src={selected.image}
                   alt={selected.title}
-                  className="w-full h-56 object-contain cursor-pointer transition-opacity duration-300 hover:opacity-90"
+                  className="w-full h-56 object-contain transition-opacity duration-300 hover:opacity-90"
                 />
               </div>
               <h4 className="mt-4 text-lg font-semibold text-gray-900">{selected.title}</h4>
               <p className="text-sm text-gray-600 mt-2">{selected.summary}</p>
 
-              <div className="mt-4 flex gap-3">
-                <Button
-                  onClick={() => setOpenDrawer(true)}
-                  className="bg-blue-600 text-white rounded-full"
-                >
-                  查看完整资质
-                </Button>
+              <div className="mt-4">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline" className="rounded-full">
@@ -111,7 +95,7 @@ export default function Qualifications() {
               </div>
             </div>
 
-            {/* Right: list thumbnails */}
+            {/* Right: list thumbnails (click to select) */}
             <div className="w-full md:w-96">
               <div className="space-y-3">
                 {qualifications.map((q) => (
@@ -128,22 +112,8 @@ export default function Qualifications() {
                   >
                     <img src={q.image} alt={q.title} className="w-16 h-12 object-contain" />
                     <div className="flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <div>
-                          <div className="font-medium text-gray-900">{q.title}</div>
-                          <div className="text-xs text-gray-500">{q.summary}</div>
-                        </div>
-                        <Button
-                          onClick={() => {
-                            setSelected(q);
-                            setOpenDrawer(true);
-                          }}
-                          variant="ghost"
-                          className="text-sm"
-                        >
-                          查看资质
-                        </Button>
-                      </div>
+                      <div className="font-medium text-gray-900">{q.title}</div>
+                      <div className="text-xs text-gray-500">{q.summary}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -151,25 +121,6 @@ export default function Qualifications() {
             </div>
           </div>
         </div>
-
-        {/* Page-level Drawer: show selected qualification */}
-        <Drawer open={openDrawer} onOpenChange={setOpenDrawer}>
-          <DrawerContent className="data-[vaul-drawer-direction=right]:w-96">
-            <DrawerHeader>
-              <DrawerTitle>{selected.title}</DrawerTitle>
-              <DrawerDescription>{selected.summary}</DrawerDescription>
-            </DrawerHeader>
-            <div className="p-4">
-              <img src={selected.image} alt={selected.title} className="w-full h-auto rounded-md" />
-              <p className="mt-4 text-sm text-gray-700">{selected.detail}</p>
-            </div>
-            <DrawerFooter>
-              <DrawerClose asChild>
-                <Button className="rounded-full">关闭</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
       </div>
     </section>
   );
