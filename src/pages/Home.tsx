@@ -3,6 +3,7 @@ import Navbar from '@/sections/Navbar';
 import Hero from '@/sections/Hero';
 import Services from '@/sections/Services';
 import Pricing from '@/sections/Pricing';
+import Qualifications from '@/sections/Qualifications';
 import CTA from '@/sections/CTA';
 import Ecosystem from '@/sections/Ecosystem';
 import Clients from '@/sections/Clients';
@@ -23,6 +24,7 @@ export default function Home() {
         <Hero />
         <Services />
         <Pricing />
+        <Qualifications />
         <CTA />
         <Ecosystem />
         <Clients />
