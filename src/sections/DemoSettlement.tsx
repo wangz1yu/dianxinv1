@@ -227,7 +227,7 @@ export default function DemoSettlement() {
                       </div>
                       <Button 
                         variant="outline" 
-                        className="border-white/20 text-white hover:bg-white/10"
+                        className="border-white/20 text-black hover:bg-white/10"
                         onClick={resetDemo}
                       >
                         <RefreshCw className="w-4 h-4 mr-2" />
