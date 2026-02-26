@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+  <defs>
+    <style>.thumb-bg { fill: #f0f9ff; } .thumb-icon { fill: #0ea5a4; } .thumb-text { fill: #047857; font-size: 12px; font-weight: 600; font-family: Arial, sans-serif; }</style>
+  </defs>
+  <rect class="thumb-bg" width="200" height="150"/>
+  <circle class="thumb-icon" cx="60" cy="50" r="25"/>
+  <rect class="thumb-icon" x="70" y="35" width="80" height="30" rx="4"/>
+  <text class="thumb-text" x="100" y="130" text-anchor="middle">软件著作权</text>
+</svg>

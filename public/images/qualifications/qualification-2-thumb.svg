@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+  <defs>
+    <style>.thumb-bg { fill: #fef3c7; } .thumb-icon { fill: #d97706; } .thumb-text { fill: #92400e; font-size: 12px; font-weight: 600; font-family: Arial, sans-serif; }</style>
+  </defs>
+  <rect class="thumb-bg" width="200" height="150"/>
+  <rect class="thumb-icon" x="40" y="30" width="120" height="65" rx="8"/>
+  <circle class="thumb-icon" cx="80" cy="50" r="12" fill="white" opacity="0.3"/>
+  <circle class="thumb-icon" cx="130" cy="65" r="12" fill="white" opacity="0.3"/>
+  <text class="thumb-text" x="100" y="130" text-anchor="middle">安全等级保护</text>
+</svg>

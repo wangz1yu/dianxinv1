@@ -14,7 +14,8 @@ const qualifications = [
   {
     id: 'soft-copyright',
     title: '软件著作权',
-    image: '/images/qualifications/qualification-1.svg',
+    thumbImage: '/images/qualifications/qualification-1-thumb.svg',
+    fullImage: '/images/qualifications/qualification-1.svg',
     summary: '公司拥有多项软件著作权，覆盖核心平台模块',
     detail:
       '本公司已取得若干软件著作权，覆盖订单处理、结算报表、对接 API 等核心能力。证书号与详细信息可在此查看。',
@@ -22,7 +23,8 @@ const qualifications = [
   {
     id: 'info-service',
     title: '信息系统安全等级保护',
-    image: '/images/qualifications/qualification-2.svg',
+    thumbImage: '/images/qualifications/qualification-2-thumb.svg',
+    fullImage: '/images/qualifications/qualification-2.svg',
     summary: '已备案并具备信息安全等级保护',
     detail:
       '本平台系统具备公安部二级安全等级保护备案。',
@@ -30,7 +32,8 @@ const qualifications = [
   {
     id: 'online-data',
     title: '在线数据处理与交易处理业务、信息服务业务、互联网信息服务资质',
-    image: '/images/qualifications/qualification-3.svg',
+    thumbImage: '/images/qualifications/qualification-3-thumb.svg',
+    fullImage: '/images/qualifications/qualification-3.svg',
     summary: '支持在线数据处理与交易处理的系统能力',
     detail:
       '系统支持高并发在线数据处理与交易流程，提供 API 与可视化管理后台，满足企业级使用场景。',
@@ -93,12 +96,12 @@ export default function Qualifications() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-xl overflow-hidden border border-gray-100 bg-gray-50"
+                className="rounded-xl overflow-hidden border border-gray-100 bg-gray-50 max-h-40"
               >
                 <img
-                  src={selected.image}
+                  src={selected.thumbImage}
                   alt={selected.title}
-                  className="w-full h-56 object-contain transition-opacity duration-300 hover:opacity-90"
+                  className="w-full h-40 object-contain transition-opacity duration-300 hover:opacity-90"
                   loading="lazy"
                 />
               </motion.div>
@@ -114,7 +117,7 @@ export default function Qualifications() {
                   </DialogTrigger>
                   <DialogContent>
                     <div className="w-full">
-                      <img src={selected.image} alt={selected.title} className="w-full h-auto" loading="lazy" />
+                      <img src={selected.fullImage} alt={selected.title} className="w-full h-auto" loading="lazy" />
                     </div>
                     <div className="mt-4">
                       <DialogTitle>{selected.title}</DialogTitle>
@@ -148,7 +151,7 @@ export default function Qualifications() {
                     }`}
                     onClick={() => handleSelectQualification(q)}
                   >
-                    <img src={q.image} alt={q.title} className="w-16 h-12 object-contain flex-shrink-0" loading="lazy" />
+                    <img src={q.thumbImage} alt={q.title} className="w-16 h-12 object-contain flex-shrink-0" loading="lazy" />
                     <div className="flex-1">
                       <div className="font-medium text-gray-900">{q.title}</div>
                       <div className="text-xs text-gray-500">{q.summary}</div>
