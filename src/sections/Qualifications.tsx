@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   Dialog,
@@ -39,6 +39,34 @@ const qualifications = [
 
 export default function Qualifications() {
   const [selected, setSelected] = useState(qualifications[0]);
+  const handleSelectQualification = useCallback(
+    (q: typeof qualifications[0]) => {
+      setSelected(q);
+    },
+    []
+  );
+
+  const containerVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0 },
+      show: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.08,
+          delayChildren: 0.05,
+        },
+      },
+    }),
+    []
+  );
+
+  const itemVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, x: -10 },
+      show: { opacity: 1, x: 0, transition: { duration: 0.35 } },
+    }),
+    []
+  );
 
   return (
     <section className="py-12 bg-gray-50">
@@ -60,13 +88,20 @@ export default function Qualifications() {
           <div className="flex flex-col md:flex-row items-start gap-6">
             {/* Left: preview and enlarge button */}
             <div className="flex-1">
-              <div className="rounded-xl overflow-hidden border border-gray-100 bg-gray-50">
+              <motion.div
+                key={selected.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.25 }}
+                className="rounded-xl overflow-hidden border border-gray-100 bg-gray-50"
+              >
                 <img
                   src={selected.image}
                   alt={selected.title}
                   className="w-full h-56 object-contain transition-opacity duration-300 hover:opacity-90"
+                  loading="lazy"
                 />
-              </div>
+              </motion.div>
               <h4 className="mt-4 text-lg font-semibold text-gray-900">{selected.title}</h4>
               <p className="text-sm text-gray-600 mt-2">{selected.summary}</p>
 
@@ -79,7 +114,7 @@ export default function Qualifications() {
                   </DialogTrigger>
                   <DialogContent>
                     <div className="w-full">
-                      <img src={selected.image} alt={selected.title} className="w-full h-auto" />
+                      <img src={selected.image} alt={selected.title} className="w-full h-auto" loading="lazy" />
                     </div>
                     <div className="mt-4">
                       <DialogTitle>{selected.title}</DialogTitle>
@@ -97,27 +132,30 @@ export default function Qualifications() {
 
             {/* Right: list thumbnails (click to select) */}
             <div className="w-full md:w-96">
-              <div className="space-y-3">
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="space-y-3"
+              >
                 {qualifications.map((q) => (
                   <motion.div
                     key={q.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
+                    variants={itemVariants}
                     className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors border ${
                       selected.id === q.id ? 'border-blue-100 bg-blue-50' : 'border-transparent'
                     }`}
-                    onClick={() => setSelected(q)}
+                    onClick={() => handleSelectQualification(q)}
                   >
-                    <img src={q.image} alt={q.title} className="w-16 h-12 object-contain" />
+                    <img src={q.image} alt={q.title} className="w-16 h-12 object-contain flex-shrink-0" loading="lazy" />
                     <div className="flex-1">
                       <div className="font-medium text-gray-900">{q.title}</div>
                       <div className="text-xs text-gray-500">{q.summary}</div>
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
