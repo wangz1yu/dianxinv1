@@ -24,6 +24,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navbar />
       <main>
+        {/* Conversion-focused sections */}
         <Hero />
         <Services />
         <Pricing />
@@ -33,10 +34,11 @@ export default function Home() {
         <Clients />
         <SuccessCases />
         <ROICalculator />
+        <FAQ />
+
         <DemoSettlement />
         <DemoContract />
         <DemoRiskControl />
-        <FAQ />
       </main>
       <Footer />
     </div>
