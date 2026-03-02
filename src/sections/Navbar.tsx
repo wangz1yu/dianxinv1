@@ -24,7 +24,6 @@ const navItems = [
       { label: '电商物流', href: '/solutions/logistics' },
     ]
   },
-  { label: '客户案例', href: '/cases' },
   { 
     label: '关于我们', 
     href: '/about/company',
