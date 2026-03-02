@@ -7,6 +7,8 @@ import Qualifications from '@/sections/Qualifications';
 import CTA from '@/sections/CTA';
 import Ecosystem from '@/sections/Ecosystem';
 import Clients from '@/sections/Clients';
+import SuccessCases from '@/sections/SuccessCases';
+import FAQ from '@/sections/FAQ';
 import DemoSettlement from '@/sections/DemoSettlement';
 import DemoContract from '@/sections/DemoContract';
 import DemoRiskControl from '@/sections/DemoRiskControl';
@@ -28,9 +30,11 @@ export default function Home() {
         <CTA />
         <Ecosystem />
         <Clients />
+        <SuccessCases />
         <DemoSettlement />
         <DemoContract />
         <DemoRiskControl />
+        <FAQ />
       </main>
       <Footer />
     </div>
