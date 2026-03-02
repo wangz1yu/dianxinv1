@@ -9,6 +9,7 @@ import Ecosystem from '@/sections/Ecosystem';
 import Clients from '@/sections/Clients';
 import SuccessCases from '@/sections/SuccessCases';
 import FAQ from '@/sections/FAQ';
+import ROICalculator from '@/sections/ROICalculator';
 import DemoSettlement from '@/sections/DemoSettlement';
 import DemoContract from '@/sections/DemoContract';
 import DemoRiskControl from '@/sections/DemoRiskControl';
@@ -23,6 +24,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navbar />
       <main>
+        {/* Conversion-focused sections */}
         <Hero />
         <Services />
         <Pricing />
@@ -31,6 +33,9 @@ export default function Home() {
         <Ecosystem />
         <Clients />
         <SuccessCases />
+        <ROICalculator />
+        <FAQ />
+
         <DemoSettlement />
         <DemoContract />
         <DemoRiskControl />

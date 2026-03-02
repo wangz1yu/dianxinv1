@@ -12,6 +12,7 @@ import Delivery from '@/pages/solutions/Delivery';
 import Ride from '@/pages/solutions/Ride';
 import Housekeeping from '@/pages/solutions/Housekeeping';
 import Logistics from '@/pages/solutions/Logistics';
+import Cases from '@/pages/Cases';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/about/company" element={<Company />} />
         <Route path="/about/history" element={<History />} />
         <Route path="/about/contact" element={<Contact />} />
+        <Route path="/cases" element={<Cases />} />
       </Routes>
     </Router>
   );
