@@ -41,7 +41,6 @@ const cases = [
 
 export default function SuccessCases() {
   return (
-    <section id="success-cases" className="py-24 bg-gray-50">
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -93,12 +92,6 @@ export default function SuccessCases() {
           })}
         </div>
 
-        <div className="mt-12 text-center flex flex-wrap items-center justify-center gap-4">
-          <Link to="/cases">
-            <Button variant="outline" className="rounded-full px-8">
-              查看完整案例库
-            </Button>
-          </Link>
         <div className="mt-12 text-center">
           <Link to="/about/contact">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 group">
