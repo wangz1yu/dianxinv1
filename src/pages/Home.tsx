@@ -39,6 +39,7 @@ export default function Home() {
         <DemoSettlement />
         <DemoContract />
         <DemoRiskControl />
+        <FAQ />
       </main>
       <Footer />
     </div>
