@@ -1,8 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Download } from 'lucide-react';
 import Navbar from '@/sections/Navbar';
 import Footer from '@/sections/Footer';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import { trackEvent } from '@/lib/analytics';
 
 const resources: { name: string; type: string; url?: string }[] = [
@@ -13,6 +21,8 @@ const resources: { name: string; type: string; url?: string }[] = [
 ];
 
 export default function Downloads() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   useEffect(() => window.scrollTo(0, 0), []);
 
   return (
@@ -37,7 +47,7 @@ export default function Downloads() {
                 trackEvent('download_resource', { resource: resource.name });
                 if (!resource.url) {
                   // no link defined
-                  window.alert('暂未添加内容，请联系运营人员获取');
+                  setDialogOpen(true);
                 } else {
                   // open the actual link
                   window.open(resource.url, '_blank');
@@ -49,6 +59,18 @@ export default function Downloads() {
           </div>
         ))}
       </section>
+      {/* dialog shown when resource url missing */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>提示</DialogTitle>
+            <DialogDescription>暂未添加内容，请联系运营人员获取</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setDialogOpen(false)}>知道了</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <Footer />
     </div>
   );
