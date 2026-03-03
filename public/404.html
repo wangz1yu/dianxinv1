@@ -3,13 +3,16 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript">
-      // Store the path before redirecting to index.html
-      const path = window.location.pathname.replace(/\/404\.html$/, '/');
-      if (path && path !== '/') {
-        sessionStorage.redirect = path + window.location.search + window.location.hash;
+      // When GitHub Pages serves this 404.html from a nonexistent path,
+      // the pathname will equal the requested URL (e.g. "/downloads").
+      // To recover we store the original path then always navigate to root
+      // so that the SPA can boot and rewrite the history entry.
+      const original = window.location.pathname + window.location.search + window.location.hash;
+      if (original && original !== '/') {
+        sessionStorage.redirect = original;
       }
-      // Redirect relative to preserve repository path on GitHub Pages
-      window.location.replace(path);
+      // always redirect to root, relative in case repo is not at domain root
+      window.location.replace('/');
     </script>
   </head>
   <body>
