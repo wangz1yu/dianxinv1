@@ -24,6 +24,20 @@ const navItems = [
       { label: '电商物流', href: '/solutions/logistics' },
     ]
   },
+  {
+    label: '客户案例',
+    href: '/cases',
+  },
+  {
+    label: '内容中心',
+    href: '/insights',
+    children: [
+      { label: '行业洞察', href: '/insights' },
+      { label: '下载中心', href: '/downloads' },
+      { label: 'ROI试算器', href: '/roi-calculator' },
+      { label: '合规与安全中心', href: '/compliance-center' },
+    ]
+  },
   { 
     label: '关于我们', 
     href: '/about/company',
