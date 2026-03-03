@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Solutions from '@/pages/Solutions';
@@ -12,10 +13,28 @@ import Delivery from '@/pages/solutions/Delivery';
 import Ride from '@/pages/solutions/Ride';
 import Housekeeping from '@/pages/solutions/Housekeeping';
 import Logistics from '@/pages/solutions/Logistics';
+import Cases from '@/pages/Cases';
+import ROICalculator from '@/pages/ROICalculator';
+import ComplianceCenter from '@/pages/ComplianceCenter';
+import Insights from '@/pages/Insights';
+import Downloads from '@/pages/Downloads';
+import { captureAttribution, trackEvent } from '@/lib/analytics';
+
+function RouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    captureAttribution();
+    trackEvent('page_view', { path: location.pathname });
+  }, [location.pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <Router>
+      <RouteTracker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
@@ -30,6 +49,11 @@ function App() {
         <Route path="/about/company" element={<Company />} />
         <Route path="/about/history" element={<History />} />
         <Route path="/about/contact" element={<Contact />} />
+        <Route path="/cases" element={<Cases />} />
+        <Route path="/roi-calculator" element={<ROICalculator />} />
+        <Route path="/compliance-center" element={<ComplianceCenter />} />
+        <Route path="/insights" element={<Insights />} />
+        <Route path="/downloads" element={<Downloads />} />
       </Routes>
     </Router>
   );
