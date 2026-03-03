@@ -5,11 +5,11 @@ import Footer from '@/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics';
 
-const resources = [
-  { name: '社会化用工方案白皮书', type: 'PDF' },
-  { name: '结算与报税实施清单模板', type: 'XLS' },
-  { name: '平台能力演示资料', type: 'PDF' },
-  { name: '合规证照汇总包', type: 'ZIP' },
+const resources: { name: string; type: string; url?: string }[] = [
+  { name: '社会化用工方案白皮书', type: 'PDF', url: '' },
+  { name: '结算与报税实施清单模板', type: 'XLS', url: '' },
+  { name: '平台能力演示资料', type: 'PDF', url: '' },
+  { name: '合规证照汇总包', type: 'ZIP', url: '' },
 ];
 
 export default function Downloads() {
@@ -33,7 +33,16 @@ export default function Downloads() {
             </div>
             <Button
               variant="outline"
-              onClick={() => trackEvent('download_resource', { resource: resource.name })}
+              onClick={() => {
+                trackEvent('download_resource', { resource: resource.name });
+                if (!resource.url) {
+                  // no link defined
+                  window.alert('暂未添加内容，请联系运营人员获取');
+                } else {
+                  // open the actual link
+                  window.open(resource.url, '_blank');
+                }
+              }}
             >
               <Download className="w-4 h-4 mr-2" />下载
             </Button>

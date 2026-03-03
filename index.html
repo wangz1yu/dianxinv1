@@ -46,6 +46,13 @@
     </script>
 
     <script type="text/javascript">
+      // ensure hash-based router has something to read.
+      // if user navigates to /some/path (no hash) we rewrite to /#/some/path
+      if (!location.hash || !location.hash.startsWith('#')) {
+        const fullPath = location.pathname + location.search + location.hash;
+        history.replaceState(null, '', '/#' + fullPath);
+      }
+
       (function() {
         const redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;

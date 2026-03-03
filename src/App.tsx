@@ -18,6 +18,7 @@ import ROICalculator from '@/pages/ROICalculator';
 import ComplianceCenter from '@/pages/ComplianceCenter';
 import Insights from '@/pages/Insights';
 import Downloads from '@/pages/Downloads';
+import NotFound from '@/pages/NotFound';
 import { captureAttribution, trackEvent } from '@/lib/analytics';
 
 function RouteTracker() {
@@ -54,6 +55,8 @@ function App() {
         <Route path="/compliance-center" element={<ComplianceCenter />} />
         <Route path="/insights" element={<Insights />} />
         <Route path="/downloads" element={<Downloads />} />
+        {/* catch-all for unknown hash routes */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
