@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Navbar from '@/sections/Navbar';
 import Footer from '@/sections/Footer';
+import { getAttribution, trackEvent } from '@/lib/analytics';
 
 const contactInfo = [
   { icon: Phone, title: '联系电话', content: '17340094007' },
@@ -15,97 +16,91 @@ const contactInfo = [
 ];
 
 interface ContactFormData {
+  identity: '企业' | '渠道' | '求职';
+  monthlyHeadcount: string;
+  industry: string;
   name: string;
   phone: string;
   email: string;
   company: string;
   message: string;
-  timestamp?: string;
 }
 
 export default function Contact() {
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<ContactFormData>({
+    identity: '企业',
+    monthlyHeadcount: '',
+    industry: '',
     name: '',
     phone: '',
     email: '',
     company: '',
     message: '',
   });
-  
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Load last form data
-    const lastFormData = localStorage.getItem('lastContactForm');
-    if (lastFormData) {
-      try {
-        setFormData(JSON.parse(lastFormData));
-      } catch (e) {
-        console.error('Failed to load form data', e);
-      }
-    }
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const canNext = useMemo(() => {
+    if (step === 1) return Boolean(formData.identity);
+    if (step === 2) return Boolean(formData.monthlyHeadcount && formData.industry);
+    return true;
+  }, [step, formData]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    const newFormData = {
-      ...formData,
-      [name]: value,
-    };
-    setFormData(newFormData);
-    localStorage.setItem('lastContactForm', JSON.stringify(newFormData));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
-      const contactRecord = {
+      const payload = {
         ...formData,
         timestamp: new Date().toISOString(),
+        attribution: getAttribution(),
       };
-      
-      // Send to Formspree
-      const response = await fetch('https://formspree.io/f/mpqjabyr', {
+
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
-        body: JSON.stringify(contactRecord),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        throw new Error('提交失败，请稍后重试');
+        const result = await response.json();
+        throw new Error(result?.error || '提交失败，请稍后重试');
       }
 
-      // Also save to localStorage for backup
-      const existing = localStorage.getItem('contactRecords');
-      const records = existing ? JSON.parse(existing) : [];
-      records.push(contactRecord);
-      localStorage.setItem('contactRecords', JSON.stringify(records));
-      
+      trackEvent('contact_submit', { identity: formData.identity, industry: formData.industry });
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
+        setStep(1);
         setFormData({
+          identity: '企业',
+          monthlyHeadcount: '',
+          industry: '',
           name: '',
           phone: '',
           email: '',
           company: '',
           message: '',
         });
-        localStorage.removeItem('lastContactForm');
-      }, 3000);
+      }, 2500);
     } catch (err) {
       setError(err instanceof Error ? err.message : '提交失败，请检查网络连接');
-      console.error('Form submission error:', err);
     } finally {
       setLoading(false);
     }
@@ -114,14 +109,17 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       <section className="pt-32 pb-20 bg-gradient-to-br from-blue-600 to-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">联系我们</h1>
-            <p className="text-blue-100 text-lg leading-relaxed">
-              无论您有任何问题或需求，我们的专业团队随时为您服务
-            </p>
+            <p className="text-blue-100 text-lg leading-relaxed">多步咨询流程，快速匹配行业顾问。</p>
+            <div className="mt-6 inline-flex flex-wrap justify-center gap-3 text-sm text-blue-100">
+              <span className="bg-white/10 px-3 py-1 rounded-full">2 小时内响应</span>
+              <span className="bg-white/10 px-3 py-1 rounded-full">支持对公保密协议</span>
+              <span className="bg-white/10 px-3 py-1 rounded-full">专属方案评估</span>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -129,17 +127,17 @@ export default function Contact() {
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <div className="bg-white rounded-3xl shadow-xl p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">在线咨询</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">在线咨询</h2>
+                <p className="text-sm text-gray-500 mb-6">步骤 {step}/3</p>
                 {submitted ? (
                   <div className="py-12 text-center">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">提交成功！</h3>
-                    <p className="text-gray-600">我们已收到您的咨询，专业团队将尽快与您联系</p>
+                    <p className="text-gray-600">我们已收到您的咨询，顾问将尽快与您联系</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -149,90 +147,74 @@ export default function Contact() {
                         <p className="text-red-700 text-sm">{error}</p>
                       </div>
                     )}
-                    <div className="grid md:grid-cols-2 gap-6">
+
+                    {step === 1 && (
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">姓名</label>
-                        <Input 
-                          name="name"
-                          placeholder="请输入您的姓名" 
-                          className="rounded-xl" 
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                          disabled={loading}
-                        />
+                        <label className="block text-sm font-medium text-gray-700 mb-2">第一步：您的身份</label>
+                        <select name="identity" className="w-full border rounded-xl h-11 px-3" value={formData.identity} onChange={handleInputChange}>
+                          <option value="企业">企业</option>
+                          <option value="渠道">渠道合作</option>
+                          <option value="求职">求职咨询</option>
+                        </select>
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">电话</label>
-                        <Input 
-                          name="phone"
-                          placeholder="请输入您的电话" 
-                          className="rounded-xl" 
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          required
-                          disabled={loading}
-                        />
+                    )}
+
+                    {step === 2 && (
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">第二步：每月业务量级（人数）</label>
+                          <Input name="monthlyHeadcount" value={formData.monthlyHeadcount} onChange={handleInputChange} placeholder="如 5000" required />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">行业类型</label>
+                          <Input name="industry" value={formData.industry} onChange={handleInputChange} placeholder="如 外卖/网约车/物流" required />
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">邮箱</label>
-                      <Input 
-                        name="email"
-                        placeholder="请输入您的邮箱" 
-                        className="rounded-xl" 
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        type="email"
-                        disabled={loading}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">公司名称</label>
-                      <Input 
-                        name="company"
-                        placeholder="请输入您的公司名称" 
-                        className="rounded-xl" 
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        disabled={loading}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">咨询内容</label>
-                      <Textarea 
-                        name="message"
-                        placeholder="请描述您的需求或问题" 
-                        className="rounded-xl min-h-[120px]" 
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
-                        disabled={loading}
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-6"
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <>
-                          <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          提交中...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4 mr-2" />
-                          提交咨询
-                        </>
+                    )}
+
+                    {step === 3 && (
+                      <div className="space-y-4">
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <Input name="name" placeholder="姓名" value={formData.name} onChange={handleInputChange} required />
+                          <Input name="phone" placeholder="电话" value={formData.phone} onChange={handleInputChange} required />
+                        </div>
+                        <Input name="email" type="email" placeholder="邮箱" value={formData.email} onChange={handleInputChange} />
+                        <Input name="company" placeholder="公司名称" value={formData.company} onChange={handleInputChange} />
+                        <Textarea name="message" placeholder="需求说明" value={formData.message} onChange={handleInputChange} className="min-h-[100px]" required />
+                      </div>
+                    )}
+
+                    <div className="flex gap-3">
+                      {step > 1 && (
+                        <Button type="button" variant="outline" className="flex-1" onClick={() => setStep((v) => v - 1)}>
+                          上一步
+                        </Button>
                       )}
-                    </Button>
+                      {step < 3 ? (
+                        <Button
+                          type="button"
+                          className="flex-1 bg-blue-600 hover:bg-blue-700"
+                          onClick={() => {
+                            if (canNext) {
+                              trackEvent('contact_step_next', { step, identity: formData.identity });
+                              setStep((v) => v + 1);
+                            }
+                          }}
+                        >
+                          下一步
+                        </Button>
+                      ) : (
+                        <Button type="submit" className="flex-1 bg-blue-600 hover:bg-blue-700 text-white" disabled={loading}>
+                          <Send className="w-4 h-4 mr-2" />
+                          {loading ? '提交中...' : '提交咨询'}
+                        </Button>
+                      )}
+                    </div>
                   </form>
                 )}
               </div>
             </motion.div>
 
-            {/* Contact Info */}
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">联系方式</h2>
               <div className="space-y-6 mb-12">
@@ -248,8 +230,6 @@ export default function Contact() {
                   </div>
                 ))}
               </div>
-
-
             </motion.div>
           </div>
         </div>

@@ -22,7 +22,7 @@ async function sendTelegramMessage(data) {
     return false;
   }
 
-  const messageText = `📬 <b>新的联系表单提交</b>\n\n👤 <b>姓名：</b> ${escapeHtml(data.name)}\n📱 <b>电话：</b> ${escapeHtml(data.phone)}\n📧 <b>邮箱：</b> ${escapeHtml(data.email || '未填写')}\n🏢 <b>公司：</b> ${escapeHtml(data.company || '未填写')}\n📝 <b>咨询内容：</b>\n${escapeHtml(data.message)}\n\n⏰ <b>提交时间：</b> ${new Date(data.timestamp || Date.now()).toLocaleString('zh-CN')}`;
+  const messageText = `📬 <b>新的联系表单提交</b>\n\n🧩 <b>身份：</b> ${escapeHtml(data.identity || '未填写')}\n📊 <b>月业务量：</b> ${escapeHtml(data.monthlyHeadcount || '未填写')}\n🏷️ <b>行业：</b> ${escapeHtml(data.industry || '未填写')}\n👤 <b>姓名：</b> ${escapeHtml(data.name)}\n📱 <b>电话：</b> ${escapeHtml(data.phone)}\n📧 <b>邮箱：</b> ${escapeHtml(data.email || '未填写')}\n🏢 <b>公司：</b> ${escapeHtml(data.company || '未填写')}\n📝 <b>咨询内容：</b>\n${escapeHtml(data.message)}\n\n🔎 <b>来源：</b> ${escapeHtml(data?.attribution?.utm_source || data?.attribution?.referrer || 'direct')}\n📍 <b>落地页：</b> ${escapeHtml(data?.attribution?.landing_page || 'unknown')}\n⏰ <b>提交时间：</b> ${new Date(data.timestamp || Date.now()).toLocaleString('zh-CN')}`;
 
   try {
     const response = await fetch(
@@ -87,7 +87,7 @@ module.exports = async (req, res) => {
     }
 
     // parse body
-    const { name, phone, email, company, message, timestamp } = req.body || {};
+    const { identity, monthlyHeadcount, industry, name, phone, email, company, message, timestamp, attribution } = req.body || {};
 
     // Validate required fields
     if (!name || !phone || !message) {
@@ -117,6 +117,10 @@ module.exports = async (req, res) => {
       email: email || '',
       company: company || '',
       message,
+      identity: identity || '',
+      monthlyHeadcount: monthlyHeadcount || '',
+      industry: industry || '',
+      attribution: attribution || {},
       timestamp: timestamp || new Date().toISOString()
     };
 
