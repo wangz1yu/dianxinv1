@@ -120,40 +120,21 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - 3D Dashboard Video */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="hidden lg:block relative"
-          >
-            <motion.div
-              animate={{ 
-                y: [0, -10, 0],
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative z-10"
-            >
-              <video
-                src="https://oss.dianxin.love/hero.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto rounded-3xl shadow-2xl border border-white/10 object-cover"
-              >
-                你的浏览器不支持视频播放，请升级或更换浏览器。
-              </video>
-            </motion.div>
-
-            {/* Glow Effect */}
-            <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full scale-75 -z-10" />
-          </motion.div>
+          {/* Removed right content for hero. */}
         </div>
+      </div>
+
+      {/* Bottom hero video */}
+      <div className="absolute bottom-0 left-0 right-0 h-72 md:h-80 lg:h-96 overflow-hidden">
+        <video
+          src="https://oss.dianxin.love/hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-80"
+        />
+        <div className="absolute inset-0 bg-gray-900/45" />
       </div>
 
       {/* Bottom Gradient Fade */}
