@@ -132,6 +132,10 @@ export default function Hero() {
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => {
+              console.error('Video failed to load:', e);
+              e.currentTarget.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-black/40" />
         </div>
