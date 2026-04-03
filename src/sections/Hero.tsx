@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
           {/* Left Content */}
           <motion.div
@@ -125,20 +125,20 @@ export default function Hero() {
       </div>
 
       {/* Bottom hero video */}
-      <div className="absolute bottom-0 left-0 right-0 h-72 md:h-80 lg:h-96 overflow-hidden">
+      <div className="absolute left-0 right-0 bottom-0 h-72 md:h-80 lg:h-96 overflow-hidden z-0">
         <video
           src="https://oss.dianxin.love/hero.mp4"
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gray-900/45" />
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5F7FA] to-transparent" />
+      <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
     </section>
   );
 }
