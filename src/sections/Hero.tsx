@@ -122,23 +122,23 @@ export default function Hero() {
 
           {/* Removed right content for hero. */}
         </div>
-      </div>
 
-      {/* Bottom hero video layer (background, behind content) */}
-      <div className="absolute inset-x-0 bottom-0 h-72 md:h-80 lg:h-96 overflow-hidden z-0">
-        <video
-          src="https://oss.dianxin.love/hero.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
+        {/* 置入hero文字下方的视频模块 */}
+        <div className="mt-10 relative w-full h-72 md:h-80 lg:h-96 overflow-hidden rounded-3xl">
+          <video
+            src="https://oss.dianxin.love/hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
     </section>
   );
 }
