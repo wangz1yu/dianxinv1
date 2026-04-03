@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-[#0A1628] via-[#0d1f35] to-[#1a365d] overflow-hidden pt-24">
+    <section className="relative bg-gradient-to-br from-[#0A1628] via-[#0d1f35] to-[#1a365d] overflow-hidden pt-12 pb-12">
       {/* Animated Background Particles */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
           {/* Left Content */}
           <motion.div
@@ -141,8 +141,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
+      {/* Bottom Gradient Fade - optional, can remove if不需要 */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
     </section>
   );
 }
