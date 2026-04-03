@@ -120,7 +120,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - 3D Dashboard Image */}
+          {/* Right Content - 3D Dashboard Video */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -138,13 +138,18 @@ export default function Hero() {
               }}
               className="relative z-10"
             >
-              <img 
-                src="/images/hero-dashboard.jpg" 
-                alt="点薪云智能结算仪表盘"
-                className="rounded-3xl shadow-2xl border border-white/10"
-              />
+              <video
+                src="https://oss.dianxin.love/hero.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto rounded-3xl shadow-2xl border border-white/10 object-cover"
+              >
+                你的浏览器不支持视频播放，请升级或更换浏览器。
+              </video>
             </motion.div>
-            
+
             {/* Glow Effect */}
             <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full scale-75 -z-10" />
           </motion.div>
