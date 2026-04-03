@@ -124,8 +124,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom hero video */}
-      <div className="relative w-full mt-8 overflow-hidden rounded-3xl h-72 md:h-80 lg:h-96 z-0">
+      {/* Bottom hero video layer (background, behind content) */}
+      <div className="absolute inset-x-0 bottom-0 h-72 md:h-80 lg:h-96 overflow-hidden z-0">
         <video
           src="https://oss.dianxin.love/hero.mp4"
           autoPlay
@@ -134,11 +134,11 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gray-900/45" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0A1628] via-[#0d1f35] to-transparent z-10" />
     </section>
   );
 }
