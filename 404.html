@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/#" />
+    <title>页面重定向...</title>
+    <script>
+      const path = window.location.pathname + window.location.search + window.location.hash;
+      const target = '/' + '#!' + path;
+      // If you are using HashRouter, route will be after #
+      window.location.replace('/#' + path);
+    </script>
+  </head>
+  <body>
+    <p>正在跳转...</p>
+    <p><a id="redirectLink" href="/">如果没有跳转，请点击这里</a></p>
+    <script>
+      const path = window.location.pathname + window.location.search + window.location.hash;
+      document.getElementById('redirectLink').href = '/#' + path;
+    </script>
+  </body>
+</html>
