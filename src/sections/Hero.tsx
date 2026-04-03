@@ -20,7 +20,7 @@ export default function Hero() {
       />
 
       {/* 黑色遮罩+粒子背景 */}
-      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-black/60" />
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(18)].map((_, i) => (
           <motion.div
